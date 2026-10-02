@@ -18,7 +18,7 @@ app.add_middleware(
 
 # 1. Initialize Supabase Client
 SUPABASE_URL = "https://jyrzvrzlisgomugznkfl.supabase.co"
-SUPABASE_KEY = "sb_secret_kdVbFdfZR78TWJp-C7Oheg_0w7wZnd7E"  # Paste your full secret key here
+SUPABASE_KEY = "sb_secret_kdVbFdfZR78TWJp-C7Oheg_0w7wZnd7"  # Paste your full secret key here
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 # 2. Load Trained AI Model
