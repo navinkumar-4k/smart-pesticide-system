@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Precision Agriculture IoT Portal | AI Leaf Disease & 5V Spraying System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Cool White and Blue Palette */
+      --bg-base: #f8fafc;
+      --bg-gradient: radial-gradient(ellipse at 15% 10%, rgba(37, 99, 235, 0.08) 0%, transparent 60%),
+                     radial-gradient(ellipse at 85% 85%, rgba(14, 165, 233, 0.07) 0%, transparent 60%),
+                     #f8fafc;
+      --card-bg: #ffffff;
+      --card-border: #e2e8f0;
+      --card-hover-border: #cbd5e1;
+      --card-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+      --card-shadow-hover: 0 10px 25px -3px rgba(37, 99, 235, 0.1), 0 4px 10px -2px rgba(15, 23, 42, 0.04);
+      
+      /* Primary Blue Tones */
+      --primary-blue: #2563eb;
+      --primary-blue-dark: #1d4ed8;
+      --primary-blue-deep: #1e3a8a;
+      --primary-blue-light: #eff6ff;
+      --primary-blue-glow: rgba(37, 99, 235, 0.25);
+      
+      /* Accent Cyan / Sky */
+      --sky-cyan: #0ea5e9;
+      --sky-cyan-light: #f0f9ff;
+      --sky-cyan-border: #bae6fd;
+      
+      /* Status Accents */
+      --emerald: #10b981;
+      --emerald-dark: #059669;
+      --emerald-bg: #ecfdf5;
+      --emerald-border: #a7f3d0;
+      
+      --red-alert: #ef4444;
+      --red-dark: #dc2626;
+      --red-bg: #fef2f2;
+      --red-border: #fca5a5;
+      --red-glow: rgba(239, 68, 68, 0.35);
+      
+      --amber: #f59e0b;
+      --amber-dark: #d97706;
+      --amber-bg: #fffbeb;
+      --amber-border: #fde68a;
+      
+      /* Typography & Neutral Slate */
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --text-subtle: #94a3b8;
+      --slate-light: #f1f5f9;
+      
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg-gradient);
+      background-attachment: fixed;
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.5;
+    }
+
+    /* Top Navigation Header (White & Blue) */
+    header {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--card-border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 14px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.03);
+    }
+
+    .brand-section {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-logo {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, #2563eb 0%, #0ea5e9 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px var(--primary-blue-glow);
+    }
+
+    .brand-logo svg {
+      width: 24px;
+      height: 24px;
+      fill: #ffffff;
+    }
+
+    .brand-titles h1 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--primary-blue-deep);
+      letter-spacing: -0.02em;
+    }
+
+    .brand-titles p {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-tab {
+      padding: 7px 14px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .nav-tab:hover {
+      color: var(--primary-blue);
+      background: var(--primary-blue-light);
+    }
+
+    .nav-tab.active {
+      color: var(--primary-blue);
+      background: var(--primary-blue-light);
+      font-weight: 700;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Target Device Hardware Pill */
+    .connection-pill {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.78rem;
+      font-family: var(--font-mono);
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      padding: 6px 14px;
+      border-radius: 999px;
+      color: #334155;
+      font-weight: 500;
+    }
+
+    .connection-pill .green-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--emerald);
+      box-shadow: 0 0 8px rgba(16, 185, 129, 0.7);
+    }
+
+    /* Live Animated Pump State Badge */
+    .pump-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 16px;
+      border-radius: 9999px;
+      font-weight: 800;
+      font-size: 0.82rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .pump-badge.idle {
+      background: var(--slate-light);
+      border: 1px solid #cbd5e1;
+      color: #475569;
+    }
+
+    .pump-badge.spraying {
+      background: var(--red-bg);
+      border: 1px solid var(--red-border);
+      color: var(--red-dark);
+      box-shadow: 0 0 16px var(--red-glow);
+      animation: pulse-pump 1.5s infinite;
+    }
+
+    .pump-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #64748b;
+    }
+
+    .pump-badge.spraying .pump-dot {
+      background: var(--red-dark);
+      box-shadow: 0 0 10px var(--red-dark);
+      animation: blink 0.8s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulse-pump {
+      0%, 100% { box-shadow: 0 0 10px var(--red-glow); }
+      50% { box-shadow: 0 0 24px rgba(239, 68, 68, 0.6); }
+    }
+
+    @keyframes blink {
+      0% { opacity: 0.3; transform: scale(0.9); }
+      100% { opacity: 1; transform: scale(1.2); }
+    }
+
+    /* Main Container */
+    main {
+      flex: 1;
+      max-width: 1440px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 24px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* Home Overview / Crop Environment Status Banner */
+    .overview-hero {
+      background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%);
+      border: 1px solid #dbeafe;
+      border-radius: 18px;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      box-shadow: 0 4px 18px rgba(37, 99, 235, 0.05);
+    }
+
+    .hero-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--primary-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .hero-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--primary-blue-deep);
+      letter-spacing: -0.02em;
+    }
+
+    .hero-meta-chips {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .meta-chip {
+      background: #ffffff;
+      border: 1px solid #dbeafe;
+      padding: 8px 14px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      box-shadow: 0 2px 6px rgba(37, 99, 235, 0.04);
+    }
+
+    .meta-chip strong {
+      color: var(--primary-blue-dark);
+      font-weight: 700;
+    }
+
+    .chip-icon {
+      color: var(--sky-cyan);
+    }
+
+    /* 4-Column Key Metric Cards */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 18px;
+    }
+
+    .metric-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 22px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--card-shadow);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.25s ease;
+    }
+
+    .metric-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--card-shadow-hover);
+      border-color: #cbd5e1;
+    }
+
+    .metric-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: #94a3b8;
+    }
+
+    .metric-card.accent-blue::before { background: linear-gradient(90deg, #2563eb, #38bdf8); }
+    .metric-card.accent-amber::before { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+    .metric-card.accent-emerald::before { background: linear-gradient(90deg, #10b981, #34d399); }
+    .metric-card.accent-cyan::before { background: linear-gradient(90deg, #0ea5e9, #06b6d4); }
+
+    .metric-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .metric-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .metric-icon-wrap {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--primary-blue-light);
+      color: var(--primary-blue);
+    }
+
+    .metric-value {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: var(--text-main);
+      font-family: var(--font-mono);
+      letter-spacing: -0.03em;
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .metric-desc {
+      margin-top: 8px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Disease diagnosis pill */
+    .disease-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .disease-healthy {
+      background: var(--emerald-bg);
+      color: var(--emerald-dark);
+      border: 1px solid var(--emerald-border);
+    }
+
+    .disease-early {
+      background: var(--amber-bg);
+      color: var(--amber-dark);
+      border: 1px solid var(--amber-border);
+    }
+
+    .disease-late {
+      background: var(--red-bg);
+      color: var(--red-dark);
+      border: 1px solid var(--red-border);
+    }
+
+    /* Confidence Progress Bar */
+    .progress-bar-wrap {
+      width: 100%;
+      height: 7px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      margin-top: 10px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #2563eb, #0ea5e9);
+      width: 0%;
+      transition: width 0.4s ease, background 0.4s ease;
+    }
+
+    /* Middle Layout Grid: Camera Viewport + Control Panel */
+    .middle-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 1024px) {
+      .middle-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .panel-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: var(--card-shadow);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .panel-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--primary-blue-deep);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .panel-tag {
+      font-size: 0.74rem;
+      font-weight: 600;
+      background: var(--primary-blue-light);
+      color: var(--primary-blue-dark);
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid #dbeafe;
+      font-family: var(--font-mono);
+    }
+
+    /* Live Camera Canvas Viewport */
+    .canvas-viewport {
+      position: relative;
+      background: #0b1329;
+      border-radius: 12px;
+      border: 2px solid #e2e8f0;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      aspect-ratio: 160 / 120;
+      width: 100%;
+      max-height: 380px;
+      box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.45);
+    }
+
+    #cameraCanvas {
+      width: 100%;
+      height: 100%;
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+      object-fit: contain;
+      display: block;
+    }
+
+    .canvas-hud {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      right: 12px;
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+
+    .hud-badge {
+      background: rgba(15, 23, 42, 0.82);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hud-dot-rec {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--red-alert);
+      animation: blink 0.9s infinite alternate;
+    }
+
+    .canvas-footer {
+      margin-top: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* Controls Station (5V Pump & AI Loop) */
+    .controls-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .control-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .control-box-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      flex: 1;
+      min-width: 120px;
+      padding: 11px 16px;
+      border-radius: 10px;
+      border: none;
+      font-size: 0.84rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      font-family: var(--font-sans);
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+
+    .btn-blue {
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+    }
+
+    .btn-blue:hover {
+      background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+      box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+    }
+
+    .btn-red {
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);
+    }
+
+    .btn-red:hover {
+      background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+      box-shadow: 0 6px 16px rgba(239, 68, 68, 0.35);
+    }
+
+    .btn-outline {
+      background: #ffffff;
+      color: #334155;
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 2px 4px rgba(15, 23, 42, 0.03);
+    }
+
+    .btn-outline:hover {
+      background: #f1f5f9;
+      border-color: #94a3b8;
+    }
+
+    .btn-sm {
+      padding: 7px 12px;
+      font-size: 0.78rem;
+      min-width: auto;
+    }
+
+    /* 5V Hardware Specifications Card */
+    .specs-card {
+      background: linear-gradient(135deg, #f0f7ff 0%, #e0f2fe 100%);
+      border: 1px dashed #7dd3fc;
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      color: #0369a1;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .specs-card strong {
+      color: #0c4a6e;
+    }
+
+    /* Spray History Table Card */
+    .history-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: var(--card-shadow);
+    }
+
+    .table-responsive {
+      overflow-x: auto;
+      margin-top: 14px;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.83rem;
+    }
+
+    thead th {
+      background: #f8fafc;
+      color: #475569;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.73rem;
+      letter-spacing: 0.05em;
+      padding: 14px 18px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    tbody td {
+      padding: 14px 18px;
+      border-bottom: 1px solid #f1f5f9;
+      color: #334155;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    tbody tr:hover td {
+      background: #f8fafc;
+    }
+
+    .mono-data {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: #1e293b;
+    }
+
+    .hardware-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 600;
+      background: #eff6ff;
+      color: #1e40af;
+      padding: 3px 8px;
+      border-radius: 5px;
+      border: 1px solid #bfdbfe;
+    }
+
+    .action-badge {
+      display: inline-block;
+      padding: 4px 9px;
+      border-radius: 6px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      font-family: var(--font-mono);
+    }
+
+    .action-spray {
+      background: var(--red-bg);
+      color: var(--red-dark);
+      border: 1px solid var(--red-border);
+    }
+
+    .action-idle {
+      background: var(--slate-light);
+      color: #475569;
+      border: 1px solid #cbd5e1;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 36px 16px;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--card-border);
+      background: #ffffff;
+      padding: 18px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    footer a {
+      color: var(--primary-blue);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Header (White & Blue Theme) -->
+  <header>
+    <div class="brand-section">
+      <div class="brand-logo">
+        <svg viewBox="0 0 24 24">
+          <path d="M12,2A10,10 0 0,0 2,12C2,17.5 6.5,22 12,22C17.5,22 22,17.5 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12C20,14.4 19.1,16.6 17.6,18.2L12,9.7L6.4,18.2C4.9,16.6 4,14.4 4,12A8,8 0 0,1 12,4M12,13.2L14.7,17.4C13.9,17.8 13,18 12,18C11,18 10.1,17.8 9.3,17.4L12,13.2Z"/>
+        </svg>
+      </div>
+      <div class="brand-titles">
+        <h1>Precision Ag AI Portal</h1>
+        <p>Autonomous Leaf Disease Detection &amp; 5V Selective Spraying</p>
+      </div>
+    </div>
+
+    <!-- Center Navigation Tabs for Home Portal -->
+    <nav class="nav-links">
+      <a href="#overview" class="nav-tab active">Overview</a>
+      <a href="#camera-view" class="nav-tab">Live Camera</a>
+      <a href="#actuator-controls" class="nav-tab">5V Pump Control</a>
+      <a href="#history-logs" class="nav-tab">Spray Logs</a>
+    </nav>
+
+    <!-- Header Actions: Target Device + Live Pump State Badge -->
+    <div class="header-actions">
+      <div class="connection-pill" title="Target mDNS Device">
+        <div class="green-dot"></div>
+        <span>esp32-leaf.local</span>
+      </div>
+
+      <div id="pumpHeaderBadge" class="pump-badge idle">
+        <div class="pump-dot"></div>
+        <span id="pumpStatusText">PUMP IDLE</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Home Overview Hero Banner -->
+    <section class="overview-hero" id="overview">
+      <div class="hero-info">
+        <span class="hero-tag">
+          <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
+          Autonomous Agentic Loop Active
+        </span>
+        <h2 class="hero-title">Greenhouse Zone 4 &bull; Tomato Foliage Protection</h2>
+      </div>
+
+      <!-- Real-Time Environmental Status Micro-Chips -->
+      <div class="hero-meta-chips">
+        <div class="meta-chip">
+          <svg class="chip-icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+          </svg>
+          <span>Actuator Rail: <strong>5.0V Regulated</strong></span>
+        </div>
+        <div class="meta-chip">
+          <svg class="chip-icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"></path>
+          </svg>
+          <span>Canopy Temp: <strong>24.2&deg;C</strong></span>
+        </div>
+        <div class="meta-chip">
+          <svg class="chip-icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+          </svg>
+          <span>Humidity: <strong>62% RH</strong></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Telemetry Metric Cards (4 Cards) -->
+    <section class="metrics-grid">
+      <!-- Card 1: Last Spray Time -->
+      <div class="metric-card accent-blue">
+        <div class="metric-top">
+          <span class="metric-label">Last Spray Time</span>
+          <div class="metric-icon-wrap">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+        </div>
+        <div class="metric-value" id="metricLastSpray" style="font-size: 1.45rem;">--:--:--</div>
+        <div class="metric-desc" id="metricLastSpraySub">Standby &bull; No active spray cycles</div>
+      </div>
+
+      <!-- Card 2: Total 5V Sprays Today -->
+      <div class="metric-card accent-amber">
+        <div class="metric-top">
+          <span class="metric-label">Total Sprays Today</span>
+          <div class="metric-icon-wrap" style="background: #fffbeb; color: #d97706;">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="metric-value">
+          <span id="metricTotalSprays">0</span>
+          <span style="font-size: 0.95rem; color: var(--text-muted); font-weight: 600;">pulses (5V Pump)</span>
+        </div>
+        <div class="metric-desc">Calibrated 3.0s selective discharge</div>
+      </div>
+
+      <!-- Card 3: Detected Disease Condition -->
+      <div class="metric-card accent-emerald">
+        <div class="metric-top">
+          <span class="metric-label">Detected Foliage Condition</span>
+          <div class="metric-icon-wrap" style="background: #ecfdf5; color: #059669;">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M11 20A7 7 0 0 1 4 13C4 9.13 7.13 6 11 6c1.67 0 3.2.58 4.41 1.56L20 3v6l-4.59-4.56A6.97 6.97 0 0 0 11 4C6.03 4 2 8.03 2 13s4.03 9 9 9h9v-2h-9z"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="metric-value">
+          <span id="metricDiseaseBadge" class="disease-pill disease-healthy">Healthy Foliage</span>
+        </div>
+        <div class="metric-desc" id="metricDiseaseSub">MobileNetV2 Deep Classifier</div>
+      </div>
+
+      <!-- Card 4: Model Confidence % -->
+      <div class="metric-card accent-cyan">
+        <div class="metric-top">
+          <span class="metric-label">Model Confidence</span>
+          <div class="metric-icon-wrap" style="background: #f0f9ff; color: #0284c7;">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+          </div>
+        </div>
+        <div class="metric-value">
+          <span id="metricConfidence">98.5</span>
+          <span style="font-size: 1.1rem; color: var(--text-muted);">%</span>
+        </div>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar-fill" id="confidenceBar" style="width: 98%;"></div>
+        </div>
+        <div class="metric-desc" id="metricLatency">Threshold &ge; 70% triggers 5V pump</div>
+      </div>
+    </section>
+
+    <!-- Middle Section: Camera Viewport + 5V Actuator Controls -->
+    <section class="middle-grid">
+      <!-- Live Camera Inspection Viewport -->
+      <div class="panel-card" id="camera-view">
+        <div class="panel-header">
+          <div class="panel-title">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+              <circle cx="12" cy="13" r="4"></circle>
+            </svg>
+            <span>AI-Thinker ESP32-CAM Viewport</span>
+          </div>
+          <span class="panel-tag">160 &times; 120 RGB565</span>
+        </div>
+
+        <div class="canvas-viewport">
+          <canvas id="cameraCanvas" width="160" height="120"></canvas>
+          <div class="canvas-hud">
+            <div class="hud-badge">
+              <div class="hud-dot-rec"></div>
+              <span>STREAM: ACTIVE</span>
+            </div>
+            <div class="hud-badge" id="hudLatency">
+              <span>LATENCY: 22ms</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="canvas-footer">
+          <span>Bitwise Buffer: <strong>38,400 bytes</strong> (QQVGA)</span>
+          <span id="lastFrameTimestamp" style="font-family: var(--font-mono); font-size: 0.76rem;">Ready</span>
+        </div>
+      </div>
+
+      <!-- Telemetry & 5V Actuation Controls -->
+      <div class="panel-card" id="actuator-controls">
+        <div class="panel-header">
+          <div class="panel-title">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+            <span>5V Actuator &amp; AI Decision Station</span>
+          </div>
+          <span class="panel-tag" id="monitoringBadge" style="background: #ecfdf5; color: #059669; border-color: #a7f3d0;">AI ACTIVE</span>
+        </div>
+
+        <div class="controls-stack">
+          <!-- Autonomous AI Loop Switch -->
+          <div class="control-box">
+            <div class="control-box-header">
+              <span>Autonomous Decision Loop</span>
+              <span id="aiLoopStateText" style="color: var(--emerald-dark); font-weight: 700;">RUNNING</span>
+            </div>
+            <div class="btn-row">
+              <button class="btn btn-blue" id="btnToggleAI" onclick="toggleAIMonitoring()">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                <span>AI Monitoring: ACTIVE</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Direct 5V Pump MOSFET Controls -->
+          <div class="control-box">
+            <div class="control-box-header">
+              <span>IRLZ44N MOSFET Actuator (5V Pump)</span>
+            </div>
+            <div class="btn-row">
+              <button class="btn btn-red" id="btnSprayOn" onclick="sendPumpOverride('ON')">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path d="M12 2v10M18 8l-6 6-6-6"></path>
+                </svg>
+                <span>Manual Spray ON (5V)</span>
+              </button>
+              <button class="btn btn-outline" id="btnSprayOff" onclick="sendPumpOverride('OFF')">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="15" y1="9" x2="9" y2="15"></line>
+                </svg>
+                <span>Manual Spray OFF</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Test Foliage Simulation Bench -->
+          <div class="control-box">
+            <div class="control-box-header">
+              <span>Foliage Ingestion Test Bench</span>
+            </div>
+            <div class="btn-row">
+              <button class="btn btn-outline btn-sm" onclick="simulateFoliageSample('Healthy')">
+                Test Healthy
+              </button>
+              <button class="btn btn-outline btn-sm" style="border-color: #f59e0b; color: #d97706;" onclick="simulateFoliageSample('Early Blight')">
+                Test Early Blight (5V Spray)
+              </button>
+              <button class="btn btn-outline btn-sm" style="border-color: #ef4444; color: #dc2626;" onclick="simulateFoliageSample('Late Blight')">
+                Test Late Blight (5V Spray)
+              </button>
+            </div>
+          </div>
+
+          <!-- 5V Hardware Specs Metadata Card -->
+          <div class="specs-card">
+            <div>Device mDNS: <strong>http://esp32-leaf.local</strong></div>
+            <div>Actuator: <strong>IRLZ44N Logic-Level N-MOSFET (GPIO 14 Gate)</strong></div>
+            <div>Pesticide Pump: <strong>5V DC Micro Submersible / Diaphragm Pump</strong></div>
+            <div>Calibrated Pulse: <strong>3.0s Selective Discharge Cycle</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Spray History & Diagnostic Logs Card -->
+    <section class="history-card" id="history-logs">
+      <div class="panel-header">
+        <div class="panel-title">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+          </svg>
+          <span>5V Pesticide Spray &amp; Foliage Diagnosis Event Logs</span>
+        </div>
+        <span class="panel-tag" id="historyCounter">0 Events</span>
+      </div>
+
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Timestamp</th>
+              <th>Diagnosis Condition</th>
+              <th>Confidence Score</th>
+              <th>Action Executed</th>
+              <th>Target Hardware</th>
+            </tr>
+          </thead>
+          <tbody id="historyTableBody">
+            <tr>
+              <td colspan="5" class="empty-state">No historical pesticide application events recorded yet.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Clean Footer -->
+  <footer>
+    <span>Precision Agriculture IoT Portal &bull; Google Antigravity Agentic Async Paradigm</span>
+    <span>Autonomous MobileNetV2 Foliage Pathology &amp; 5V Actuator Engine &bull; Version 2.1</span>
+  </footer>
+
+  <script>
+    let aiMonitoringActive = true;
+    let isPolling = false;
+
+    const canvas = document.getElementById('cameraCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // =========================================================================
+    // 1. CLIENT-SIDE BITWISE RGB565 DECODING LOGIC
+    // =========================================================================
+    function decodeRGB565ToCanvas(arrayBuffer) {
+      const bytes = new Uint8Array(arrayBuffer);
+      if (bytes.length !== 38400) return;
+
+      const imgData = ctx.createImageData(160, 120);
+      const data = imgData.data;
+
+      let pixelIdx = 0;
+      for (let i = 0; i < bytes.length; i += 2) {
+        const byte1 = bytes[i];
+        const byte2 = bytes[i + 1];
+        const val = (byte1 << 8) | byte2;
+
+        const r5 = (val >> 11) & 0x1F;
+        const g6 = (val >> 5) & 0x3F;
+        const b5 = val & 0x1F;
+
+        data[pixelIdx * 4] = Math.floor((r5 * 255) / 31);
+        data[pixelIdx * 4 + 1] = Math.floor((g6 * 255) / 63);
+        data[pixelIdx * 4 + 2] = Math.floor((b5 * 255) / 31);
+        data[pixelIdx * 4 + 3] = 255;
+        pixelIdx++;
+      }
+
+      ctx.putImageData(imgData, 0, 0);
+    }
+
+    function renderPlaceholderCanvas() {
+      ctx.fillStyle = '#0f172a';
+      ctx.fillRect(0, 0, 160, 120);
+
+      ctx.strokeStyle = '#38bdf8';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.ellipse(80, 60, 45, 25, Math.PI / 4, 0, 2 * Math.PI);
+      ctx.stroke();
+
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '8px monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText('ESP32-CAM STANDBY', 80, 63);
+    }
+    renderPlaceholderCanvas();
+
+    // =========================================================================
+    // 2. TELEMETRY & POLLING ENGINE
+    // =========================================================================
+    async function fetchSystemTelemetry() {
+      if (isPolling) return;
+      isPolling = true;
+
+      try {
+        const response = await fetch('/api/status');
+        if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+        const data = await response.json();
+        updateDashboardUI(data);
+      } catch (err) {
+        console.error('Telemetry poll error:', err);
+      } finally {
+        isPolling = false;
+      }
+    }
+
+    async function fetchHistoryLogs() {
+      try {
+        const res = await fetch('/api/history');
+        if (!res.ok) return;
+        const data = await res.json();
+        renderHistoryTable(data.history || []);
+      } catch (err) {
+        console.error('History fetch error:', err);
+      }
+    }
+
+    async function fetchLatestFrameStream() {
+      try {
+        const res = await fetch('/api/latest_frame');
+        if (!res.ok) return;
+        const frameData = await res.json();
+        if (frameData.image_data) {
+          const img = new Image();
+          img.onload = () => {
+            ctx.drawImage(img, 0, 0, 160, 120);
+          };
+          img.src = frameData.image_data;
+          if (frameData.timestamp) {
+            document.getElementById('lastFrameTimestamp').innerText = `Synced: ${frameData.timestamp.split(' ')[1] || frameData.timestamp}`;
+          }
+        }
+      } catch (err) {
+        console.error('Frame fetch error:', err);
+      }
+    }
+
+    // =========================================================================
+    // 3. UI STATE RENDERER (White & Blue Modern Theme)
+    // =========================================================================
+    function updateDashboardUI(data) {
+      // 1. Pump Header Animated Badge
+      const pumpBadge = document.getElementById('pumpHeaderBadge');
+      const pumpText = document.getElementById('pumpStatusText');
+      if (data.pump_status === 'ON') {
+        pumpBadge.className = 'pump-badge spraying';
+        pumpText.innerText = '5V PUMP SPRAYING';
+      } else {
+        pumpBadge.className = 'pump-badge idle';
+        pumpText.innerText = 'PUMP IDLE';
+      }
+
+      // 2. Metric Cards
+      document.getElementById('metricLastSpray').innerText = data.last_spray_time !== 'Never' ? data.last_spray_time.split(' ')[1] : '--:--:--';
+      document.getElementById('metricLastSpraySub').innerText = data.last_spray_time !== 'Never' ? `Date: ${data.last_spray_time.split(' ')[0]}` : 'Standby &bull; No active spray cycles';
+      document.getElementById('metricTotalSprays').innerText = data.total_sprays_today;
+
+      // 3. Disease Classification Badge
+      const disease = data.last_detected_disease;
+      const diseaseBadge = document.getElementById('metricDiseaseBadge');
+      diseaseBadge.innerText = disease;
+      diseaseBadge.className = 'disease-pill ' + (
+        disease === 'Healthy' ? 'disease-healthy' :
+        disease === 'Early Blight' ? 'disease-early' : 'disease-late'
+      );
+
+      // 4. Model Confidence Percentage & Progress Bar
+      const conf = data.last_confidence;
+      document.getElementById('metricConfidence').innerText = conf.toFixed(1);
+      const bar = document.getElementById('confidenceBar');
+      bar.style.width = `${Math.min(100, Math.max(0, conf))}%`;
+      if (disease === 'Healthy') {
+        bar.style.background = 'linear-gradient(90deg, #10b981, #059669)';
+      } else {
+        bar.style.background = conf >= 70 ? 'linear-gradient(90deg, #ef4444, #dc2626)' : 'linear-gradient(90deg, #f59e0b, #d97706)';
+      }
+
+      // 5. Latency readout
+      document.getElementById('hudLatency').innerText = `LATENCY: ${data.inference_latency_ms}ms`;
+
+      // 6. AI Monitoring Toggle State
+      aiMonitoringActive = data.ai_monitoring_active;
+      const btnToggle = document.getElementById('btnToggleAI');
+      const loopText = document.getElementById('aiLoopStateText');
+      const monBadge = document.getElementById('monitoringBadge');
+
+      if (aiMonitoringActive) {
+        btnToggle.className = 'btn btn-blue';
+        btnToggle.innerHTML = `<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg><span>AI Monitoring: ACTIVE</span>`;
+        loopText.innerText = 'RUNNING';
+        loopText.style.color = 'var(--emerald-dark)';
+        monBadge.innerText = 'AI ACTIVE';
+        monBadge.style.background = '#ecfdf5';
+        monBadge.style.color = '#059669';
+        monBadge.style.borderColor = '#a7f3d0';
+      } else {
+        btnToggle.className = 'btn btn-outline';
+        btnToggle.innerHTML = `<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg><span>AI Monitoring: PAUSED</span>`;
+        loopText.innerText = 'PAUSED';
+        loopText.style.color = 'var(--text-muted)';
+        monBadge.innerText = 'PAUSED';
+        monBadge.style.background = '#f1f5f9';
+        monBadge.style.color = '#64748b';
+        monBadge.style.borderColor = '#cbd5e1';
+      }
+    }
+
+    function renderHistoryTable(history) {
+      const tbody = document.getElementById('historyTableBody');
+      const counter = document.getElementById('historyCounter');
+      counter.innerText = `${history.length} Event${history.length === 1 ? '' : 's'}`;
+
+      if (history.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="5" class="empty-state">No historical pesticide application events recorded yet.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = history.slice(0, 15).map(item => {
+        const isSpray = item.action_taken.toLowerCase().includes('spray') || item.action_taken.toLowerCase().includes('actuate');
+        // Ensure hardware label reflects 5V Pump
+        let hwLabel = item.target_hardware || "IRLZ44N MOSFET (5V Pump)";
+        hwLabel = hwLabel.replace("12V", "5V");
+
+        return `
+          <tr>
+            <td class="mono-data">${item.timestamp}</td>
+            <td>
+              <span class="disease-pill ${item.disease_condition === 'Healthy' ? 'disease-healthy' : (item.disease_condition === 'Early Blight' ? 'disease-early' : 'disease-late')}" style="font-size: 0.78rem;">
+                ${item.disease_condition}
+              </span>
+            </td>
+            <td class="mono-data">${item.confidence_score}%</td>
+            <td>
+              <span class="action-badge ${isSpray ? 'action-spray' : 'action-idle'}">
+                ${item.action_taken.replace("12V", "5V")}
+              </span>
+            </td>
+            <td>
+              <span class="hardware-tag">
+                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                ${hwLabel}
+              </span>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // =========================================================================
+    // 4. OPERATOR CONTROLS & TEST SIMULATION TRIGGERS
+    // =========================================================================
+    async function sendPumpOverride(action) {
+      try {
+        const res = await fetch('/api/override/pump', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: action })
+        });
+        const result = await res.json();
+        console.log('Pump override result:', result);
+        fetchSystemTelemetry();
+        fetchHistoryLogs();
+      } catch (err) {
+        alert('Failed to send 5V pump override: ' + err);
+      }
+    }
+
+    async function toggleAIMonitoring() {
+      const newState = !aiMonitoringActive;
+      try {
+        const res = await fetch('/api/override/monitoring', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ active: newState })
+        });
+        const result = await res.json();
+        fetchSystemTelemetry();
+        fetchHistoryLogs();
+      } catch (err) {
+        alert('Failed to toggle AI monitoring: ' + err);
+      }
+    }
+
+    async function simulateFoliageSample(condition) {
+      try {
+        const res = await fetch('/api/simulate_sample', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ condition: condition })
+        });
+        const data = await res.json();
+        console.log('Simulation response:', data);
+        await fetchLatestFrameStream();
+        await fetchSystemTelemetry();
+        await fetchHistoryLogs();
+      } catch (err) {
+        alert('Simulation error: ' + err);
+      }
+    }
+
+    // =========================================================================
+    // 5. INITIALIZATION & HEARTBEAT
+    // =========================================================================
+    window.addEventListener('DOMContentLoaded', () => {
+      fetchSystemTelemetry();
+      fetchHistoryLogs();
+      fetchLatestFrameStream();
+
+      // Telemetry heartbeat interval (1,000ms)
+      setInterval(() => {
+        fetchSystemTelemetry();
+        fetchHistoryLogs();
+      }, 1000);
+
+      // Frame refresh interval (1,500ms)
+      setInterval(() => {
+        fetchLatestFrameStream();
+      }, 1500);
+    });
+  </script>
+</body>
+</html>
