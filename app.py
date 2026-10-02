@@ -1,4 +1,3 @@
-sb_secret_kdVbFdfZR78TWJp-C7Oheg_0w7wZnd7E
 import os
 import numpy as np
 import tensorflow as tf
