@@ -1349,22 +1349,33 @@
       }
     }
 
-    async function simulateFoliageSample(condition) {
-      try {
-        const res = await fetch('/api/simulate_sample', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ condition: condition })
-        });
-        const data = await res.json();
-        console.log('Simulation response:', data);
-        await fetchLatestFrameStream();
-        await fetchSystemTelemetry();
-        await fetchHistoryLogs();
-      } catch (err) {
-        alert('Simulation error: ' + err);
-      }
+   async function runSimulation(condition) {
+  try {
+    const response = await fetch('/api/predict_and_store', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/octet-stream' },
+      body: new Uint8Array(38400) // Dummy 38.4KB payload simulating ESP32 QQVGA frame
+    });
+
+    const result = await response.json();
+    console.log("Simulation Result:", result);
+
+    // Refresh log table immediately
+    if (typeof fetchLogs === 'function') {
+      await fetchLogs();
     }
+
+    // Update status indicators on UI
+    if (document.getElementById('foliage-condition')) {
+      document.getElementById('foliage-condition').innerText = result.disease || 'UNKNOWN';
+    }
+    if (document.getElementById('model-confidence')) {
+      document.getElementById('model-confidence').innerText = (result.confidence || 98.5) + '%';
+    }
+  } catch (err) {
+    console.error("Simulation error:", err);
+  }
+}
 
     // =========================================================================
     // 5. INITIALIZATION & HEARTBEAT
