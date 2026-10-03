@@ -17,7 +17,7 @@ app.add_middleware(
 
 # 1. Initialize Supabase Client (Paste your FULL key here)
 SUPABASE_URL = "https://jyrzvrzlisgomugznkfl.supabase.co"
-SUPABASE_KEY = "sb_secret_bUVsgS9-qULSg7W8APQACg_3WUfWTU7"
+SUPABASE_KEY = "sb_secret_hqxdJ7i7YhAaTqRNehFI6Q_siu0y0v1"
 
 try:
     supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
