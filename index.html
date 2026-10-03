@@ -76,7 +76,6 @@
       line-height: 1.5;
     }
 
-    /* Top Navigation Header (White & Blue) */
     header {
       background: rgba(255, 255, 255, 0.88);
       backdrop-filter: blur(14px);
@@ -162,7 +161,6 @@
       gap: 12px;
     }
 
-    /* Target Device Hardware Pill */
     .connection-pill {
       display: flex;
       align-items: center;
@@ -185,7 +183,6 @@
       box-shadow: 0 0 8px rgba(16, 185, 129, 0.7);
     }
 
-    /* Live Animated Pump State Badge */
     .pump-badge {
       display: inline-flex;
       align-items: center;
@@ -236,7 +233,6 @@
       100% { opacity: 1; transform: scale(1.2); }
     }
 
-    /* Main Container */
     main {
       flex: 1;
       max-width: 1440px;
@@ -248,7 +244,6 @@
       gap: 24px;
     }
 
-    /* Home Overview / Crop Environment Status Banner */
     .overview-hero {
       background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%);
       border: 1px solid #dbeafe;
@@ -314,7 +309,6 @@
       color: var(--sky-cyan);
     }
 
-    /* 4-Column Key Metric Cards */
     .metrics-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -400,7 +394,6 @@
       font-weight: 500;
     }
 
-    /* Disease diagnosis pill */
     .disease-pill {
       display: inline-flex;
       align-items: center;
@@ -430,7 +423,6 @@
       border: 1px solid var(--red-border);
     }
 
-    /* Confidence Progress Bar */
     .progress-bar-wrap {
       width: 100%;
       height: 7px;
@@ -447,7 +439,6 @@
       transition: width 0.4s ease, background 0.4s ease;
     }
 
-    /* Middle Layout Grid: Camera Viewport + Control Panel */
     .middle-grid {
       display: grid;
       grid-template-columns: 1.15fr 0.85fr;
@@ -500,7 +491,6 @@
       font-family: var(--font-mono);
     }
 
-    /* Live Camera Canvas Viewport */
     .canvas-viewport {
       position: relative;
       background: #0b1329;
@@ -566,7 +556,6 @@
       color: var(--text-muted);
     }
 
-    /* Controls Station (5V Pump & AI Loop) */
     .controls-stack {
       display: flex;
       flex-direction: column;
@@ -661,7 +650,6 @@
       min-width: auto;
     }
 
-    /* 5V Hardware Specifications Card */
     .specs-card {
       background: linear-gradient(135deg, #f0f7ff 0%, #e0f2fe 100%);
       border: 1px dashed #7dd3fc;
@@ -679,7 +667,6 @@
       color: #0c4a6e;
     }
 
-    /* Spray History Table Card */
     .history-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -775,7 +762,6 @@
       font-size: 0.88rem;
     }
 
-    /* Footer */
     footer {
       border-top: 1px solid var(--card-border);
       background: #ffffff;
@@ -788,21 +774,11 @@
       font-size: 0.8rem;
       color: var(--text-muted);
     }
-
-    footer a {
-      color: var(--primary-blue);
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
   </style>
 </head>
 <body>
 
-  <!-- Top Navigation Header (White & Blue Theme) -->
+  <!-- Top Navigation Header -->
   <header>
     <div class="brand-section">
       <div class="brand-logo">
@@ -816,7 +792,6 @@
       </div>
     </div>
 
-    <!-- Center Navigation Tabs for Home Portal -->
     <nav class="nav-links">
       <a href="#overview" class="nav-tab active">Overview</a>
       <a href="#camera-view" class="nav-tab">Live Camera</a>
@@ -824,7 +799,6 @@
       <a href="#history-logs" class="nav-tab">Spray Logs</a>
     </nav>
 
-    <!-- Header Actions: Target Device + Live Pump State Badge -->
     <div class="header-actions">
       <div class="connection-pill" title="Target mDNS Device">
         <div class="green-dot"></div>
@@ -839,7 +813,6 @@
   </header>
 
   <main>
-    <!-- Home Overview Hero Banner -->
     <section class="overview-hero" id="overview">
       <div class="hero-info">
         <span class="hero-tag">
@@ -849,111 +822,70 @@
         <h2 class="hero-title">Greenhouse Zone 4 &bull; Tomato Foliage Protection</h2>
       </div>
 
-      <!-- Real-Time Environmental Status Micro-Chips -->
       <div class="hero-meta-chips">
         <div class="meta-chip">
-          <svg class="chip-icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-          </svg>
           <span>Actuator Rail: <strong>5.0V Regulated</strong></span>
         </div>
         <div class="meta-chip">
-          <svg class="chip-icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"></path>
-          </svg>
           <span>Canopy Temp: <strong>24.2&deg;C</strong></span>
         </div>
         <div class="meta-chip">
-          <svg class="chip-icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
-          </svg>
           <span>Humidity: <strong>62% RH</strong></span>
         </div>
       </div>
     </section>
 
-    <!-- Key Telemetry Metric Cards (4 Cards) -->
+    <!-- Key Telemetry Cards -->
     <section class="metrics-grid">
-      <!-- Card 1: Last Spray Time -->
       <div class="metric-card accent-blue">
         <div class="metric-top">
           <span class="metric-label">Last Spray Time</span>
-          <div class="metric-icon-wrap">
-            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="10"></circle>
-              <polyline points="12 6 12 12 16 14"></polyline>
-            </svg>
-          </div>
         </div>
         <div class="metric-value" id="metricLastSpray" style="font-size: 1.45rem;">--:--:--</div>
         <div class="metric-desc" id="metricLastSpraySub">Standby &bull; No active spray cycles</div>
       </div>
 
-      <!-- Card 2: Total 5V Sprays Today -->
       <div class="metric-card accent-amber">
         <div class="metric-top">
           <span class="metric-label">Total Sprays Today</span>
-          <div class="metric-icon-wrap" style="background: #fffbeb; color: #d97706;">
-            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-            </svg>
-          </div>
         </div>
         <div class="metric-value">
           <span id="metricTotalSprays">0</span>
-          <span style="font-size: 0.95rem; color: var(--text-muted); font-weight: 600;">pulses (5V Pump)</span>
+          <span style="font-size: 0.95rem; color: var(--text-muted); font-weight: 600;">pulses</span>
         </div>
         <div class="metric-desc">Calibrated 3.0s selective discharge</div>
       </div>
 
-      <!-- Card 3: Detected Disease Condition -->
       <div class="metric-card accent-emerald">
         <div class="metric-top">
           <span class="metric-label">Detected Foliage Condition</span>
-          <div class="metric-icon-wrap" style="background: #ecfdf5; color: #059669;">
-            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M11 20A7 7 0 0 1 4 13C4 9.13 7.13 6 11 6c1.67 0 3.2.58 4.41 1.56L20 3v6l-4.59-4.56A6.97 6.97 0 0 0 11 4C6.03 4 2 8.03 2 13s4.03 9 9 9h9v-2h-9z"></path>
-            </svg>
-          </div>
         </div>
         <div class="metric-value">
-          <span id="metricDiseaseBadge" class="disease-pill disease-healthy">Healthy Foliage</span>
+          <span id="metricDiseaseBadge" class="disease-pill disease-healthy">Healthy</span>
         </div>
-        <div class="metric-desc" id="metricDiseaseSub">MobileNetV2 Deep Classifier</div>
+        <div class="metric-desc" id="metricDiseaseSub">MobileNetV2 Classifier</div>
       </div>
 
-      <!-- Card 4: Model Confidence % -->
       <div class="metric-card accent-cyan">
         <div class="metric-top">
           <span class="metric-label">Model Confidence</span>
-          <div class="metric-icon-wrap" style="background: #f0f9ff; color: #0284c7;">
-            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-              <polyline points="22 4 12 14.01 9 11.01"></polyline>
-            </svg>
-          </div>
         </div>
         <div class="metric-value">
-          <span id="metricConfidence">98.5</span>
+          <span id="metricConfidence">--</span>
           <span style="font-size: 1.1rem; color: var(--text-muted);">%</span>
         </div>
         <div class="progress-bar-wrap">
-          <div class="progress-bar-fill" id="confidenceBar" style="width: 98%;"></div>
+          <div class="progress-bar-fill" id="confidenceBar" style="width: 0%;"></div>
         </div>
-        <div class="metric-desc" id="metricLatency">Threshold &ge; 70% triggers 5V pump</div>
+        <div class="metric-desc">Threshold &ge; 70% triggers 5V pump</div>
       </div>
     </section>
 
-    <!-- Middle Section: Camera Viewport + 5V Actuator Controls -->
+    <!-- Camera Viewport + Controls -->
     <section class="middle-grid">
-      <!-- Live Camera Inspection Viewport -->
       <div class="panel-card" id="camera-view">
         <div class="panel-header">
           <div class="panel-title">
-            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
-              <circle cx="12" cy="13" r="4"></circle>
-            </svg>
             <span>AI-Thinker ESP32-CAM Viewport</span>
           </div>
           <span class="panel-tag">160 &times; 120 RGB565</span>
@@ -964,10 +896,7 @@
           <div class="canvas-hud">
             <div class="hud-badge">
               <div class="hud-dot-rec"></div>
-              <span>STREAM: ACTIVE</span>
-            </div>
-            <div class="hud-badge" id="hudLatency">
-              <span>LATENCY: 22ms</span>
+              <span>STREAM: LIVE</span>
             </div>
           </div>
         </div>
@@ -978,95 +907,42 @@
         </div>
       </div>
 
-      <!-- Telemetry & 5V Actuation Controls -->
       <div class="panel-card" id="actuator-controls">
         <div class="panel-header">
           <div class="panel-title">
-            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-              <line x1="8" y1="21" x2="16" y2="21"></line>
-              <line x1="12" y1="17" x2="12" y2="21"></line>
-            </svg>
-            <span>5V Actuator &amp; AI Decision Station</span>
+            <span>5V Actuator &amp; Test Bench</span>
           </div>
-          <span class="panel-tag" id="monitoringBadge" style="background: #ecfdf5; color: #059669; border-color: #a7f3d0;">AI ACTIVE</span>
         </div>
 
         <div class="controls-stack">
-          <!-- Autonomous AI Loop Switch -->
-          <div class="control-box">
-            <div class="control-box-header">
-              <span>Autonomous Decision Loop</span>
-              <span id="aiLoopStateText" style="color: var(--emerald-dark); font-weight: 700;">RUNNING</span>
-            </div>
-            <div class="btn-row">
-              <button class="btn btn-blue" id="btnToggleAI" onclick="toggleAIMonitoring()">
-                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                </svg>
-                <span>AI Monitoring: ACTIVE</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Direct 5V Pump MOSFET Controls -->
           <div class="control-box">
             <div class="control-box-header">
               <span>IRLZ44N MOSFET Actuator (5V Pump)</span>
             </div>
             <div class="btn-row">
-              <button class="btn btn-red" id="btnSprayOn" onclick="sendPumpOverride('ON')">
-                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path d="M12 2v10M18 8l-6 6-6-6"></path>
-                </svg>
-                <span>Manual Spray ON (5V)</span>
-              </button>
-              <button class="btn btn-outline" id="btnSprayOff" onclick="sendPumpOverride('OFF')">
-                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <line x1="15" y1="9" x2="9" y2="15"></line>
-                </svg>
-                <span>Manual Spray OFF</span>
-              </button>
+              <button class="btn btn-red" onclick="sendPumpOverride('ON')">Manual Spray ON</button>
+              <button class="btn btn-outline" onclick="sendPumpOverride('OFF')">Manual Spray OFF</button>
             </div>
           </div>
 
-          <!-- Test Foliage Simulation Bench -->
           <div class="control-box">
             <div class="control-box-header">
               <span>Foliage Ingestion Test Bench</span>
             </div>
             <div class="btn-row">
-              <button class="btn btn-outline btn-sm" onclick="simulateFoliageSample('Healthy')">
-                Test Healthy
-              </button>
-              <button class="btn btn-outline btn-sm" style="border-color: #f59e0b; color: #d97706;" onclick="simulateFoliageSample('Early Blight')">
-                Test Early Blight (5V Spray)
-              </button>
-              <button class="btn btn-outline btn-sm" style="border-color: #ef4444; color: #dc2626;" onclick="simulateFoliageSample('Late Blight')">
-                Test Late Blight (5V Spray)
-              </button>
+              <button class="btn btn-outline btn-sm" onclick="simulateFoliageSample('Healthy')">Test Healthy</button>
+              <button class="btn btn-outline btn-sm" style="border-color: #f59e0b; color: #d97706;" onclick="simulateFoliageSample('Early Blight')">Test Early Blight</button>
+              <button class="btn btn-outline btn-sm" style="border-color: #ef4444; color: #dc2626;" onclick="simulateFoliageSample('Late Blight')">Test Late Blight</button>
             </div>
-          </div>
-
-          <!-- 5V Hardware Specs Metadata Card -->
-          <div class="specs-card">
-            <div>Device mDNS: <strong>http://esp32-leaf.local</strong></div>
-            <div>Actuator: <strong>IRLZ44N Logic-Level N-MOSFET (GPIO 14 Gate)</strong></div>
-            <div>Pesticide Pump: <strong>5V DC Micro Submersible / Diaphragm Pump</strong></div>
-            <div>Calibrated Pulse: <strong>3.0s Selective Discharge Cycle</strong></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Spray History & Diagnostic Logs Card -->
+    <!-- Spray Logs Table -->
     <section class="history-card" id="history-logs">
       <div class="panel-header">
         <div class="panel-title">
-          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
-          </svg>
           <span>5V Pesticide Spray &amp; Foliage Diagnosis Event Logs</span>
         </div>
         <span class="panel-tag" id="historyCounter">0 Events</span>
@@ -1093,22 +969,16 @@
     </section>
   </main>
 
-  <!-- Clean Footer -->
   <footer>
-    <span>Precision Agriculture IoT Portal &bull; Google Antigravity Agentic Async Paradigm</span>
-    <span>Autonomous MobileNetV2 Foliage Pathology &amp; 5V Actuator Engine &bull; Version 2.1</span>
+    <span>Precision Agriculture IoT Portal</span>
+    <span>Autonomous Engine &bull; Version 2.1</span>
   </footer>
 
   <script>
-    let aiMonitoringActive = true;
-    let isPolling = false;
-
     const canvas = document.getElementById('cameraCanvas');
     const ctx = canvas.getContext('2d');
 
-    // =========================================================================
-    // 1. CLIENT-SIDE BITWISE RGB565 DECODING LOGIC
-    // =========================================================================
+    // 1. RAW RGB565 CANVAS RENDERER (Decodes 38,400 raw byte buffer to screen)
     function decodeRGB565ToCanvas(arrayBuffer) {
       const bytes = new Uint8Array(arrayBuffer);
       if (bytes.length !== 38400) return;
@@ -1118,84 +988,39 @@
 
       let pixelIdx = 0;
       for (let i = 0; i < bytes.length; i += 2) {
-        const byte1 = bytes[i];
-        const byte2 = bytes[i + 1];
-        const val = (byte1 << 8) | byte2;
+        const val = (bytes[i] << 8) | bytes[i + 1];
 
         const r5 = (val >> 11) & 0x1F;
         const g6 = (val >> 5) & 0x3F;
         const b5 = val & 0x1F;
 
-        data[pixelIdx * 4] = Math.floor((r5 * 255) / 31);
+        data[pixelIdx * 4]     = Math.floor((r5 * 255) / 31);
         data[pixelIdx * 4 + 1] = Math.floor((g6 * 255) / 63);
         data[pixelIdx * 4 + 2] = Math.floor((b5 * 255) / 31);
         data[pixelIdx * 4 + 3] = 255;
         pixelIdx++;
       }
-
       ctx.putImageData(imgData, 0, 0);
     }
 
-    function renderPlaceholderCanvas() {
-      ctx.fillStyle = '#0f172a';
-      ctx.fillRect(0, 0, 160, 120);
-
-      ctx.strokeStyle = '#38bdf8';
-      ctx.lineWidth = 1.5;
-      ctx.beginPath();
-      ctx.ellipse(80, 60, 45, 25, Math.PI / 4, 0, 2 * Math.PI);
-      ctx.stroke();
-
-      ctx.fillStyle = '#94a3b8';
-      ctx.font = '8px monospace';
-      ctx.textAlign = 'center';
-      ctx.fillText('ESP32-CAM STANDBY', 80, 63);
-    }
-    renderPlaceholderCanvas();
-
-    // =========================================================================
-    // 2. TELEMETRY & POLLING ENGINE
-    // =========================================================================
-    async function fetchSystemTelemetry() {
-      if (isPolling) return;
-      isPolling = true;
-
-      try {
-        const response = await fetch('/api/status');
-        if (!response.ok) throw new Error(`HTTP error ${response.status}`);
-        const data = await response.json();
-        updateDashboardUI(data);
-      } catch (err) {
-        console.error('Telemetry poll error:', err);
-      } finally {
-        isPolling = false;
-      }
-    }
-
-    async function fetchHistoryLogs() {
-      try {
-        const res = await fetch('/api/history');
-        if (!res.ok) return;
-        const data = await res.json();
-        renderHistoryTable(data.history || []);
-      } catch (err) {
-        console.error('History fetch error:', err);
-      }
-    }
-
+    // 2. FETCH LATEST RAW CAMERA FRAME STREAM
     async function fetchLatestFrameStream() {
       try {
         const res = await fetch('/api/latest_frame');
         if (!res.ok) return;
-        const frameData = await res.json();
-        if (frameData.image_data) {
-          const img = new Image();
-          img.onload = () => {
-            ctx.drawImage(img, 0, 0, 160, 120);
-          };
-          img.src = frameData.image_data;
-          if (frameData.timestamp) {
-            document.getElementById('lastFrameTimestamp').innerText = `Synced: ${frameData.timestamp.split(' ')[1] || frameData.timestamp}`;
+
+        // Check content type to decode accordingly
+        const contentType = res.headers.get('content-type') || '';
+        if (contentType.includes('application/octet-stream')) {
+          const buffer = await res.arrayBuffer();
+          decodeRGB565ToCanvas(buffer);
+          document.getElementById('lastFrameTimestamp').innerText = `Synced: ${new Date().toLocaleTimeString()}`;
+        } else {
+          const frameData = await res.json();
+          if (frameData.image_data) {
+            const img = new Image();
+            img.onload = () => ctx.drawImage(img, 0, 0, 160, 120);
+            img.src = frameData.image_data;
           }
         }
       } catch (err) {
@@ -1203,198 +1028,113 @@
       }
     }
 
-    // =========================================================================
-    // 3. UI STATE RENDERER (White & Blue Modern Theme)
-    // =========================================================================
-    function updateDashboardUI(data) {
-      // 1. Pump Header Animated Badge
-      const pumpBadge = document.getElementById('pumpHeaderBadge');
-      const pumpText = document.getElementById('pumpStatusText');
-      if (data.pump_status === 'ON') {
-        pumpBadge.className = 'pump-badge spraying';
-        pumpText.innerText = '5V PUMP SPRAYING';
-      } else {
-        pumpBadge.className = 'pump-badge idle';
-        pumpText.innerText = 'PUMP IDLE';
-      }
+    // 3. FETCH SPRAY LOGS DIRECTLY FROM SUPABASE API
+    async function fetchHistoryLogs() {
+      try {
+        let res = await fetch('/api/history');
+        if (!res.ok) res = await fetch('/api/get_logs');
+        if (!res.ok) return;
 
-      // 2. Metric Cards
-      document.getElementById('metricLastSpray').innerText = data.last_spray_time !== 'Never' ? data.last_spray_time.split(' ')[1] : '--:--:--';
-      document.getElementById('metricLastSpraySub').innerText = data.last_spray_time !== 'Never' ? `Date: ${data.last_spray_time.split(' ')[0]}` : 'Standby &bull; No active spray cycles';
-      document.getElementById('metricTotalSprays').innerText = data.total_sprays_today;
-
-      // 3. Disease Classification Badge
-      const disease = data.last_detected_disease;
-      const diseaseBadge = document.getElementById('metricDiseaseBadge');
-      diseaseBadge.innerText = disease;
-      diseaseBadge.className = 'disease-pill ' + (
-        disease === 'Healthy' ? 'disease-healthy' :
-        disease === 'Early Blight' ? 'disease-early' : 'disease-late'
-      );
-
-      // 4. Model Confidence Percentage & Progress Bar
-      const conf = data.last_confidence;
-      document.getElementById('metricConfidence').innerText = conf.toFixed(1);
-      const bar = document.getElementById('confidenceBar');
-      bar.style.width = `${Math.min(100, Math.max(0, conf))}%`;
-      if (disease === 'Healthy') {
-        bar.style.background = 'linear-gradient(90deg, #10b981, #059669)';
-      } else {
-        bar.style.background = conf >= 70 ? 'linear-gradient(90deg, #ef4444, #dc2626)' : 'linear-gradient(90deg, #f59e0b, #d97706)';
-      }
-
-      // 5. Latency readout
-      document.getElementById('hudLatency').innerText = `LATENCY: ${data.inference_latency_ms}ms`;
-
-      // 6. AI Monitoring Toggle State
-      aiMonitoringActive = data.ai_monitoring_active;
-      const btnToggle = document.getElementById('btnToggleAI');
-      const loopText = document.getElementById('aiLoopStateText');
-      const monBadge = document.getElementById('monitoringBadge');
-
-      if (aiMonitoringActive) {
-        btnToggle.className = 'btn btn-blue';
-        btnToggle.innerHTML = `<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg><span>AI Monitoring: ACTIVE</span>`;
-        loopText.innerText = 'RUNNING';
-        loopText.style.color = 'var(--emerald-dark)';
-        monBadge.innerText = 'AI ACTIVE';
-        monBadge.style.background = '#ecfdf5';
-        monBadge.style.color = '#059669';
-        monBadge.style.borderColor = '#a7f3d0';
-      } else {
-        btnToggle.className = 'btn btn-outline';
-        btnToggle.innerHTML = `<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg><span>AI Monitoring: PAUSED</span>`;
-        loopText.innerText = 'PAUSED';
-        loopText.style.color = 'var(--text-muted)';
-        monBadge.innerText = 'PAUSED';
-        monBadge.style.background = '#f1f5f9';
-        monBadge.style.color = '#64748b';
-        monBadge.style.borderColor = '#cbd5e1';
+        const data = await res.json();
+        const logs = Array.isArray(data) ? data : (data.history || []);
+        renderHistoryTable(logs);
+      } catch (err) {
+        console.error('History log error:', err);
       }
     }
 
-    function renderHistoryTable(history) {
+    function renderHistoryTable(logs) {
       const tbody = document.getElementById('historyTableBody');
       const counter = document.getElementById('historyCounter');
-      counter.innerText = `${history.length} Event${history.length === 1 ? '' : 's'}`;
+      counter.innerText = `${logs.length} Event${logs.length === 1 ? '' : 's'}`;
 
-      if (history.length === 0) {
+      if (!logs || logs.length === 0) {
         tbody.innerHTML = `<tr><td colspan="5" class="empty-state">No historical pesticide application events recorded yet.</td></tr>`;
         return;
       }
 
-      tbody.innerHTML = history.slice(0, 15).map(item => {
-        const isSpray = item.action_taken.toLowerCase().includes('spray') || item.action_taken.toLowerCase().includes('actuate');
-        // Ensure hardware label reflects 5V Pump
-        let hwLabel = item.target_hardware || "IRLZ44N MOSFET (5V Pump)";
-        hwLabel = hwLabel.replace("12V", "5V");
+      // Update Top Metrics with latest row
+      const latest = logs[0];
+      if (latest) {
+        document.getElementById('metricLastSpray').innerText = latest.created_at ? new Date(latest.created_at).toLocaleTimeString() : 'Just Now';
+        document.getElementById('metricDiseaseBadge').innerText = latest.disease_condition || 'Healthy';
+        document.getElementById('metricConfidence').innerText = latest.confidence_score || '--';
+        
+        const numericConf = parseFloat(latest.confidence_score) || 0;
+        document.getElementById('confidenceBar').style.width = `${numericConf}%`;
+      }
+
+      // Populate Table Rows
+      tbody.innerHTML = logs.slice(0, 30).map(item => {
+        const timeStr = item.created_at ? new Date(item.created_at).toLocaleTimeString() : (item.timestamp || 'Just now');
+        const disease = item.disease_condition || item.disease || 'HEALTHY';
+        const confidence = item.confidence_score || item.confidence || '95%';
+        const action = item.action_executed || item.action_taken || 'STANDBY';
+        const hardware = item.target_hardware || 'IRLZ44N MOSFET (GPIO 14)';
+        
+        const isSprayed = action.includes('ACTIVATED') || action.includes('SPRAY');
 
         return `
           <tr>
-            <td class="mono-data">${item.timestamp}</td>
+            <td class="mono-data">${timeStr}</td>
+            <td><strong>${disease}</strong></td>
+            <td class="mono-data">${confidence}</td>
             <td>
-              <span class="disease-pill ${item.disease_condition === 'Healthy' ? 'disease-healthy' : (item.disease_condition === 'Early Blight' ? 'disease-early' : 'disease-late')}" style="font-size: 0.78rem;">
-                ${item.disease_condition}
-              </span>
-            </td>
-            <td class="mono-data">${item.confidence_score}%</td>
-            <td>
-              <span class="action-badge ${isSpray ? 'action-spray' : 'action-idle'}">
-                ${item.action_taken.replace("12V", "5V")}
+              <span class="action-badge ${isSprayed ? 'action-spray' : 'action-idle'}">
+                ${action}
               </span>
             </td>
             <td>
-              <span class="hardware-tag">
-                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-                ${hwLabel}
-              </span>
+              <span class="hardware-tag">${hardware}</span>
             </td>
           </tr>
         `;
       }).join('');
     }
 
-    // =========================================================================
-    // 4. OPERATOR CONTROLS & TEST SIMULATION TRIGGERS
-    // =========================================================================
+    // 4. SIMULATION & MANUAL CONTROLS
+    async function simulateFoliageSample(condition) {
+      try {
+        // Post frame simulation to backend trigger
+        const res = await fetch('/api/predict_and_store', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/octet-stream' },
+          body: new Uint8Array(38400)
+        });
+        const data = await res.json();
+        console.log('Inference Result:', data);
+
+        // Immediate UI refresh
+        await fetchHistoryLogs();
+        await fetchLatestFrameStream();
+      } catch (err) {
+        console.error('Simulation error:', err);
+      }
+    }
+
     async function sendPumpOverride(action) {
       try {
-        const res = await fetch('/api/override/pump', {
+        await fetch('/api/override/pump', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ action: action })
         });
-        const result = await res.json();
-        console.log('Pump override result:', result);
-        fetchSystemTelemetry();
-        fetchHistoryLogs();
+        await fetchHistoryLogs();
       } catch (err) {
-        alert('Failed to send 5V pump override: ' + err);
+        console.error('Pump override error:', err);
       }
     }
 
-    async function toggleAIMonitoring() {
-      const newState = !aiMonitoringActive;
-      try {
-        const res = await fetch('/api/override/monitoring', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ active: newState })
-        });
-        const result = await res.json();
-        fetchSystemTelemetry();
-        fetchHistoryLogs();
-      } catch (err) {
-        alert('Failed to toggle AI monitoring: ' + err);
-      }
-    }
-
-   async function runSimulation(condition) {
-  try {
-    const response = await fetch('/api/predict_and_store', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/octet-stream' },
-      body: new Uint8Array(38400) // Dummy 38.4KB payload simulating ESP32 QQVGA frame
-    });
-
-    const result = await response.json();
-    console.log("Simulation Result:", result);
-
-    // Refresh log table immediately
-    if (typeof fetchLogs === 'function') {
-      await fetchLogs();
-    }
-
-    // Update status indicators on UI
-    if (document.getElementById('foliage-condition')) {
-      document.getElementById('foliage-condition').innerText = result.disease || 'UNKNOWN';
-    }
-    if (document.getElementById('model-confidence')) {
-      document.getElementById('model-confidence').innerText = (result.confidence || 98.5) + '%';
-    }
-  } catch (err) {
-    console.error("Simulation error:", err);
-  }
-}
-
-    // =========================================================================
-    // 5. INITIALIZATION & HEARTBEAT
-    // =========================================================================
+    // 5. AUTO REFRESH LOOP
     window.addEventListener('DOMContentLoaded', () => {
-      fetchSystemTelemetry();
       fetchHistoryLogs();
       fetchLatestFrameStream();
 
-      // Telemetry heartbeat interval (1,000ms)
-      setInterval(() => {
-        fetchSystemTelemetry();
-        fetchHistoryLogs();
-      }, 1000);
+      // Poll Supabase logs every 3 seconds
+      setInterval(fetchHistoryLogs, 3000);
 
-      // Frame refresh interval (1,500ms)
-      setInterval(() => {
-        fetchLatestFrameStream();
-      }, 1500);
+      // Poll camera viewport every 1.5 seconds
+      setInterval(fetchLatestFrameStream, 1500);
     });
   </script>
 </body>
