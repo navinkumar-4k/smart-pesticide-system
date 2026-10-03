@@ -2,5 +2,5 @@ fastapi
 uvicorn
 tensorflow-cpu
 numpy
-supabase
 requests
+firebase-admin
