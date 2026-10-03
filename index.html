@@ -1093,24 +1093,25 @@
     }
 
     // 4. SIMULATION & MANUAL CONTROLS
-    async function simulateFoliageSample(condition) {
-      try {
-        // Post frame simulation to backend trigger
-        const res = await fetch('/api/predict_and_store', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/octet-stream' },
-          body: new Uint8Array(38400)
-        });
-        const data = await res.json();
-        console.log('Inference Result:', data);
+   async function simulateFoliageSample(condition) {
+  try {
+    // 1. Post a dummy 38.4KB QQVGA frame payload directly to /api/predict_and_store
+    const res = await fetch('/api/predict_and_store', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/octet-stream' },
+      body: new Uint8Array(38400)
+    });
 
-        // Immediate UI refresh
-        await fetchHistoryLogs();
-        await fetchLatestFrameStream();
-      } catch (err) {
-        console.error('Simulation error:', err);
-      }
-    }
+    const data = await res.json();
+    console.log('Inference Result:', data);
+
+    // 2. Fetch updated logs from Supabase and refresh viewport
+    await fetchHistoryLogs();
+    await fetchLatestFrameStream();
+  } catch (err) {
+    console.error('Simulation error:', err);
+  }
+}
 
     async function sendPumpOverride(action) {
       try {
